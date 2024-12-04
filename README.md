@@ -1,8 +1,8 @@
-# vue-change-marker
+# <img src="./logo.jpg" width="30" height="30" align="center" /> vue change marker
 
-When a vue component changes, vue-change-marker can highlight the changed component
+When a vue component changes, `vue change marker` can highlight the changed component
 
-[demo](https://linzhe141.github.io/vue-change-marker/)
+[demo using `vue change marker`](https://linzhe141.github.io/vue-change-marker/)
 
 ![vue-change-marker demo](./demo.gif)
 
