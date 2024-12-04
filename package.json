@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "pnpm run -C examples dev",
     "build": "pnpm run --filter=./packages/core build",
+    "build:example": "pnpm run -C examples build",
     "changeset": "changeset",
     "vp": "changeset version",
     "release": "changeset publish"
