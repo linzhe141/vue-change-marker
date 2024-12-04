@@ -1,7 +1,13 @@
 {
-  "name": "vue-scan",
+  "name": "vue-change-marker",
   "version": "0.0.1",
   "description": "Highlight updated vue components",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rm -rf dist && vite build"
   },

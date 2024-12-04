@@ -1,6 +1,6 @@
-import { VueScan } from 'vue-scan'
+import { VueChangeMarker } from 'vue-change-marker'
 import { createApp } from 'vue'
 import App from './App.vue'
-VueScan()
+VueChangeMarker()
 
 createApp(App).mount('#app')

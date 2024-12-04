@@ -1,6 +1,6 @@
 import { type ComponentInternalInstance } from 'vue'
 
-export function VueScan() {
+export function VueChangeMarker() {
   const ctx = initCanvas()
   function emit(event: string, ...payload: any[]) {
     if (event === 'component:updated') {
@@ -33,7 +33,7 @@ export function VueScan() {
       }, 100)
     }
   }
-  if (window.__VUE_DEVTOOLS_GLOBAL_HOOK__?.id !== 'vue-scan') {
+  if (window.__VUE_DEVTOOLS_GLOBAL_HOOK__?.id !== 'vue-change-marker') {
     const oldEmit = window.__VUE_DEVTOOLS_GLOBAL_HOOK__.emit
     window.__VUE_DEVTOOLS_GLOBAL_HOOK__.emit = function (...args: any[]) {
       oldEmit.call(window.__VUE_DEVTOOLS_GLOBAL_HOOK__, ...args)
@@ -42,13 +42,13 @@ export function VueScan() {
     }
   }
   if (!window.__VUE_DEVTOOLS_GLOBAL_HOOK__) {
-    window.__VUE_DEVTOOLS_GLOBAL_HOOK__ = { id: 'vue-scan', emit }
+    window.__VUE_DEVTOOLS_GLOBAL_HOOK__ = { id: 'vue-change-marker', emit }
   }
 }
 
 function initCanvas() {
   const canvas = document.createElement('canvas')
-  canvas.id = 'vue-scan-canvas'
+  canvas.id = 'vue-change-marker-canvas'
   canvas.style.position = 'fixed'
   canvas.style.top = '0'
   canvas.style.left = '0'

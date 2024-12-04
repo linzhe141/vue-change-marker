@@ -7,7 +7,7 @@ export default defineConfig({
     // 直接使用源码
     alias: [
       {
-        find: 'vue-scan',
+        find: 'vue-change-marker',
         replacement: join(__dirname, '../packages/core/index.ts'),
       },
     ],
