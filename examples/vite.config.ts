@@ -15,7 +15,7 @@ export default defineConfig({
         find: 'vue',
         replacement: join(
           __dirname,
-          '../node_modules/vue/dist/vue.esm-browser.js'
+          '../node_modules/vue/dist/vue.esm-browser.js',
         ),
       },
       {

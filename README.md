@@ -1,4 +1,5 @@
 # vue-change-marker
+
 When a vue component changes, vue-change-marker can highlight the changed component
 
 [demo](https://linzhe141.github.io/vue-change-marker/)
@@ -13,8 +14,6 @@ When a vue component changes, vue-change-marker can highlight the changed compon
 ```bash
 npm i vue-change-marker
 ```
-
-
 
 ```ts
 import { VueChangeMarker } from 'vue-change-marker'
