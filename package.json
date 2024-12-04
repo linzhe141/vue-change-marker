@@ -1,0 +1,26 @@
+{
+  "name": "vue-scan",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm run -C examples dev",
+    "build": "pnpm run --filter=./packages/core build",
+    "changeset": "changeset",
+    "vp": "changeset version",
+    "release": "changeset publish"
+  },
+  "dependencies": {
+    "@changesets/cli": "^2.27.10",
+    "@types/node": "^22.10.1",
+    "@vue/shared": "^3.5.13",
+    "prettier": "^3.4.1",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "typescript": "~5.6.2",
+    "vite": "^6.0.1",
+    "vue-tsc": "^2.1.10"
+  }
+}
