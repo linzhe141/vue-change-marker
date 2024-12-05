@@ -19,7 +19,7 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "vue-change-marker": ["./packages/core/index.ts"]
+      "vue-change-marker": ["packages/core/src/index.ts"]
     }
   }
 }

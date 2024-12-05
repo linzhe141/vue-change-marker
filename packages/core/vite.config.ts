@@ -3,7 +3,7 @@ import { resolve } from 'path'
 export default defineConfig({
   build: {
     lib: {
-      entry: './index.ts',
+      entry: './src/index.ts',
     },
     minify: false,
     rollupOptions: {

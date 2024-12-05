@@ -20,7 +20,7 @@ export default defineConfig({
       },
       {
         find: 'vue-change-marker',
-        replacement: join(__dirname, '../packages/core/index.ts'),
+        replacement: join(__dirname, '../packages/core/src/index.ts'),
       },
     ],
   },
