@@ -15,7 +15,7 @@ function flush() {
     highlight(ctx!, dom, updatedInstance)
     scheduledDom.shift()
     if (scheduledDom.length) {
-      requestAnimationFrame(flush)
+      flush()
     } else {
       isPending = false
       clearTimeout(timer)
@@ -30,6 +30,6 @@ function flush() {
 export function queueflush() {
   if (!isPending) {
     isPending = true
-    flush()
+    Promise.resolve().then(flush)
   }
 }

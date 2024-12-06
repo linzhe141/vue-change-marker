@@ -61,12 +61,14 @@ export function highlight(
   const rect = el.getBoundingClientRect()
 
   const componentName =
-    updatedInstance.type.__name || updatedInstance.type.__file || ''
-
+    updatedInstance.type.name ||
+    updatedInstance.type.__name ||
+    updatedInstance.type.__file ||
+    '- -'
   ctx.save()
   if (rect.width >= 120) {
     ctx.font = '14px Arial'
-    const componentText = `updated component: ${componentName}`
+    const componentText = `<${componentName}/>`
     const timesText = `updated times: ${updateCounter}`
     const textWidth = Math.max(
       ctx.measureText(componentText).width,
