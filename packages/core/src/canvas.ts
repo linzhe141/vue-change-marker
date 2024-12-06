@@ -1,4 +1,4 @@
-import { ComponentInternalInstance } from 'vue'
+import type { ComponentInternalInstance } from 'vue'
 
 export let ctx: CanvasRenderingContext2D | null = null
 const updateCounters = new WeakMap<HTMLElement, number>()
@@ -49,57 +49,58 @@ export function highlight(
   el: HTMLElement,
   updatedInstance: ComponentInternalInstance,
 ) {
-  clearCanvas(ctx!)
-
   let updateCounter = updateCounters.get(el) || 0
   updateCounter++
 
   updateCounters.set(el, updateCounter)
   elements.add(el)
 
-  const opacity = Math.min(0.9, updateCounter * 0.2)
+  const padding = 4
+
+  const opacity = Math.min(0.8, updateCounter * 0.3)
   const rect = el.getBoundingClientRect()
 
   const componentName =
     updatedInstance.type.__name || updatedInstance.type.__file || ''
 
   ctx.save()
-  ctx.fillStyle = `rgba(255, 0, 0, ${opacity})`
-  ctx.fillRect(rect.x, rect.y - 40, Math.max(250, rect.width), 40)
-  ctx.fillStyle = `white`
-  ctx.font = '14px Arial'
-  ctx.fillText('updated component: ' + componentName, rect.x, rect.y - 25)
-  ctx.fillText('updated times: ' + updateCounter, rect.x, rect.y - 5)
+  if (rect.width >= 120) {
+    ctx.font = '14px Arial'
+    const componentText = `updated component: ${componentName}`
+    const timesText = `updated times: ${updateCounter}`
+    const textWidth = Math.max(
+      ctx.measureText(componentText).width,
+      ctx.measureText(timesText).width,
+    )
+    ctx.fillStyle = `rgba(74, 222, 128, ${opacity})`
+    if (rect.y > 40) {
+      ctx.fillRect(rect.x, rect.y - 40, textWidth + padding * 2, 40)
+    } else {
+      ctx.fillRect(rect.x, rect.y, textWidth + padding * 2, 40)
+    }
+
+    ctx.fillStyle = `white`
+    if (rect.y > 40) {
+      ctx.fillText(componentText, rect.x + padding, rect.y - 25)
+      ctx.fillText(timesText, rect.x + padding, rect.y - 5)
+    } else {
+      ctx.fillText(componentText, rect.x + padding, rect.y - 25 + 40)
+      ctx.fillText(timesText, rect.x + padding, rect.y - 5 + 40)
+    }
+  } else {
+    ctx.font = '14px Arial'
+    const timesTextWidth = ctx.measureText(`${updateCounter}`).width
+    ctx.fillStyle = `rgba(74, 222, 128, ${opacity})`
+    ctx.fillRect(rect.x, rect.y - 20, timesTextWidth + padding * 2, 20)
+
+    ctx.fillStyle = `white`
+    ctx.fillText(`${updateCounter}`, rect.x + padding, rect.y - padding)
+  }
   ctx.restore()
 
   ctx.save()
-  ctx.strokeStyle = `rgba(255, 0, 0, ${opacity})`
+  ctx.strokeStyle = `rgba(74, 222, 128, ${opacity})`
   ctx.lineWidth = 1
   ctx.strokeRect(rect.x, rect.y, rect.width, rect.height)
   ctx.restore()
-}
-
-export const getRect = (domNode: Element): DOMRect | null => {
-  const style = window.getComputedStyle(domNode)
-  if (
-    style.display === 'none' ||
-    style.visibility === 'hidden' ||
-    style.opacity === '0'
-  ) {
-    return null
-  }
-
-  const rect = domNode.getBoundingClientRect()
-
-  const isVisible =
-    rect.bottom > 0 &&
-    rect.right > 0 &&
-    rect.top < window.innerHeight &&
-    rect.left < window.innerWidth
-
-  if (!isVisible || !rect.width || !rect.height) {
-    return null
-  }
-
-  return rect
 }

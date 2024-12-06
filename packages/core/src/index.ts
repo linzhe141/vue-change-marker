@@ -1,5 +1,5 @@
 import { type ComponentInternalInstance } from 'vue'
-import { getRect, initCanvas } from './canvas'
+import { initCanvas } from './canvas'
 import { queueflush, scheduledDom } from './scheduler'
 
 export function VueChangeMarker() {
@@ -15,13 +15,8 @@ function emit(event: string, ...payload: any[]) {
     if (type === 'Symbol(v-fgt)') return
 
     const el = updatedInstance.vnode.el! as HTMLElement | null
-    if (!el) return
-    // 注释节点之类的 transition 这类组件
-    if (!el.getBoundingClientRect) return
-    const rect = getRect(el)
-    if (rect) {
-      scheduledDom.push({ dom: el, updatedInstance })
-    }
+    if (!(el instanceof HTMLElement)) return
+    scheduledDom.push({ dom: el, updatedInstance })
     queueflush()
   }
 }

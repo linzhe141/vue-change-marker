@@ -1,4 +1,4 @@
-import { ComponentInternalInstance } from 'vue'
+import type { ComponentInternalInstance } from 'vue'
 import { clearCanvas, ctx, highlight, resetCounters } from './canvas'
 
 let isPending = false
@@ -12,24 +12,22 @@ function flush() {
   const item = scheduledDom[0]
   if (item) {
     const { dom, updatedInstance } = item
-    requestAnimationFrame(() => {
-      highlight(ctx!, dom, updatedInstance)
-      scheduledDom.shift()
-      if (scheduledDom.length) {
-        requestAnimationFrame(flush)
-      } else {
-        isPending = false
-        clearTimeout(timer)
-        timer = window.setTimeout(() => {
-          clearCanvas(ctx!)
-          resetCounters()
-        }, 300)
-      }
-    })
+    highlight(ctx!, dom, updatedInstance)
+    scheduledDom.shift()
+    if (scheduledDom.length) {
+      requestAnimationFrame(flush)
+    } else {
+      isPending = false
+      clearTimeout(timer)
+      timer = window.setTimeout(() => {
+        clearCanvas(ctx!)
+        resetCounters()
+      }, 300)
+    }
   }
 }
 
-export const queueflush = async () => {
+export function queueflush() {
   if (!isPending) {
     isPending = true
     flush()
