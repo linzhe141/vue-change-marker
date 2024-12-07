@@ -3,7 +3,7 @@
     class="todo-item"
     style="display: flex; justify-content: space-between; margin-bottom: 10px"
   >
-    <label style="flex: 1">
+    <label style="flex: 1; user-select: none">
       <input type="checkbox" v-model="checked" />
       <span :class="{ completed: checked }">{{ todo.text }}</span>
     </label>
