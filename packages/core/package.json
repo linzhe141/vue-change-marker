@@ -16,6 +16,11 @@
       "import": "./dist/index.js"
     }
   },
+  "homepage": "https://linzhe141.github.io/vue-change-marker",
   "author": "linzhe141@qq.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/linzhe141/linzhe-tools.git"
+  },
   "license": "ISC"
 }
