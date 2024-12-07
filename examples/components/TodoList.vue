@@ -2,9 +2,9 @@
   <div class="todo-list">
     <h2>My To-Do List</h2>
     <div style="margin-bottom: 10px">
-      <a href="https://github.com/linzhe141/vue-change-marker"
-        >how to use vue-change-marker</a
-      >
+      <a href="https://github.com/linzhe141/vue-change-marker">
+        how to use vue-change-marker
+      </a>
     </div>
     <input v-model="newTodo" @keyup.enter="addTodo" placeholder="New task" />
     <div v-for="todo in todos" :key="todo.text">
