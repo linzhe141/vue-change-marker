@@ -2,6 +2,8 @@ import { type ComponentInternalInstance } from 'vue'
 import { initCanvas } from './canvas'
 import { queueflush, scheduledDom } from './scheduler'
 
+const HOOK = '__VUE_DEVTOOLS_GLOBAL_HOOK__'
+
 export function VueChangeMarker() {
   initCanvas()
   registerDevtoolsHook()
@@ -22,15 +24,15 @@ function emit(event: string, ...payload: any[]) {
 }
 
 function registerDevtoolsHook() {
-  if (window.__VUE_DEVTOOLS_GLOBAL_HOOK__?.id !== 'vue-change-marker') {
-    const oldEmit = window.__VUE_DEVTOOLS_GLOBAL_HOOK__.emit
-    window.__VUE_DEVTOOLS_GLOBAL_HOOK__.emit = function (...args: any[]) {
-      oldEmit.call(window.__VUE_DEVTOOLS_GLOBAL_HOOK__, ...args)
+  if (window[HOOK]?.id !== 'vue-change-marker') {
+    const oldEmit = window[HOOK].emit
+    window[HOOK].emit = function (...args: any[]) {
+      oldEmit.call(window[HOOK], ...args)
       // @ts-expect-error
       emit(...args)
     }
   }
-  if (!window.__VUE_DEVTOOLS_GLOBAL_HOOK__) {
-    window.__VUE_DEVTOOLS_GLOBAL_HOOK__ = { id: 'vue-change-marker', emit }
+  if (!window[HOOK]) {
+    window[HOOK] = { id: 'vue-change-marker', emit }
   }
 }
