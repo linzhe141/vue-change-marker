@@ -1,5 +1,12 @@
 # vue-change-marker
 
+## 0.0.5
+
+### Patch Changes
+
+- ffb57e3: refactor: replace `window.__VUE_DEVTOOLS_GLOBAL_HOOK__` with window[HOOK]
+- e677a32: feat: add user-options
+
 ## 0.0.4
 
 ### Patch Changes

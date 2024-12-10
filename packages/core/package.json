@@ -1,6 +1,6 @@
 {
   "name": "vue-change-marker",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Highlight updated vue components",
   "publishConfig": {
     "access": "public"
