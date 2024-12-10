@@ -1,10 +1,13 @@
 import { type ComponentInternalInstance } from 'vue'
 import { initCanvas } from './canvas'
 import { queueflush, scheduledDom } from './scheduler'
+import { mergeOptions } from './options'
+import type { Options } from './types'
 
 const HOOK = '__VUE_DEVTOOLS_GLOBAL_HOOK__'
 
-export function VueChangeMarker() {
+export function VueChangeMarker(options?: Options) {
+  if (options) mergeOptions(options)
   initCanvas()
   registerDevtoolsHook()
 }

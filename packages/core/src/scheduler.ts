@@ -1,5 +1,6 @@
 import type { ComponentInternalInstance } from 'vue'
 import { clearCanvas, ctx, highlight, resetCounters } from './canvas'
+import { currentOptions } from './options'
 
 let isPending = false
 let timer: number = 0
@@ -22,7 +23,7 @@ function flush() {
       timer = window.setTimeout(() => {
         clearCanvas(ctx!)
         resetCounters()
-      }, 300)
+      }, currentOptions.hideDelay)
     }
   }
 }

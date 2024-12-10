@@ -6,7 +6,8 @@
     "access": "public"
   },
   "files": [
-    "dist"
+    "dist",
+    "src/types.d.ts"
   ],
   "scripts": {
     "build": "rm -rf dist && vite build"
@@ -16,6 +17,7 @@
       "import": "./dist/index.js"
     }
   },
+  "types": "src/types.d.ts",
   "homepage": "https://linzhe141.github.io/vue-change-marker",
   "author": "linzhe141@qq.com",
   "repository": {
