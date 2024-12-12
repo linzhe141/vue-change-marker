@@ -1,5 +1,12 @@
 # vue-change-marker
 
+## 0.0.6
+
+### Patch Changes
+
+- ecd2ccb: chore: update non-componentName
+- ed40f9c: chore: update the correct repository in package.json
+
 ## 0.0.5
 
 ### Patch Changes
