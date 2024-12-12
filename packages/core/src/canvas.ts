@@ -64,7 +64,7 @@ export function highlight(
     updatedInstance.type.name ||
     updatedInstance.type.__name ||
     updatedInstance.type.__file ||
-    '- -'
+    'Anonymous'
   ctx.save()
   if (rect.width >= 120) {
     ctx.font = '14px Arial'
