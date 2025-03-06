@@ -27,15 +27,15 @@ function emit(event: string, ...payload: any[]) {
 }
 
 function registerDevtoolsHook() {
-  if (window[HOOK]?.id !== 'vue-change-marker') {
+  if (!window[HOOK]) {
+    window[HOOK] = { id: 'vue-change-marker', emit }
+  }
+  if (window[HOOK].id !== 'vue-change-marker') {
     const oldEmit = window[HOOK].emit
     window[HOOK].emit = function (...args: any[]) {
       oldEmit.call(window[HOOK], ...args)
       // @ts-expect-error
       emit(...args)
     }
-  }
-  if (!window[HOOK]) {
-    window[HOOK] = { id: 'vue-change-marker', emit }
   }
 }
